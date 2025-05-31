@@ -82,8 +82,8 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
           width: 100%;
           background: linear-gradient(
             to right,
-            #2563eb,
-            #6d28d9
+            rgba(8, 8, 8, 0),
+            rgb(42, 40, 45)
           ); /* from-blue-600 to-purple-700 */
           color: white;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
         }
 
         .navbar-container {
-          max-width: 1280px; /* equivalent to container mx-auto */
+          max-width: mx-auto;
           margin-left: auto;
           margin-right: auto;
           display: flex;
@@ -104,32 +104,18 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
         .navbar-brand {
           font-size: 1.5rem; /* text-2xl */
           font-weight: bold;
+          color: black;
           border-radius: 0.375rem; /* rounded-md */
           padding: 0.5rem 0.75rem; /* px-3 py-2 */
           transition: background-color 0.3s ease;
         }
 
         .navbar-brand:hover {
-          background-color: #1d4ed8; /* hover:bg-blue-700 */
-        }
-
-        /* Mobile menu button */
-        .menu-button {
-          padding: 0.5rem; /* p-2 */
-          border-radius: 0.375rem; /* rounded-md */
-          outline: none;
-          border: none;
-          background: transparent;
-          cursor: pointer;
+          background-color: rgb(255, 255, 255); /* hover:bg-blue-700 */
         }
 
         .menu-button:focus {
           box-shadow: 0 0 0 2px white; /* focus:ring-2 focus:ring-white */
-        }
-
-        .menu-button svg {
-          width: 1.5rem; /* w-6 */
-          height: 1.5rem; /* h-6 */
         }
 
         /* Desktop navigation links */
@@ -139,16 +125,17 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
         }
 
         .nav-link {
-          padding: 0.5rem 1rem; /* px-4 py-2 */
+          padding: 0.5rem 6rem; /* px-4 py-2 */
           border-radius: 0.375rem; /* rounded-md */
           font-size: 1.126rem; /* text-lg */
           font-weight: 500; /* font-medium */
+          color: white;
           transition: background-color 0.3s ease, color 0.3s ease,
             box-shadow 0.3s ease;
         }
 
         .nav-link:hover {
-          background-color: #3b82f6; /* hover:bg-blue-500 */
+          background-color: rgb(70, 105, 151); /* hover:bg-blue-500 */
           color: white;
         }
 
@@ -158,44 +145,10 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
         }
 
-        /* Mobile navigation menu */
-        .nav-menu-mobile {
-          margin-top: 1rem; /* mt-4 */
-          background-color: #1d4ed8; /* bg-blue-700 */
-          border-radius: 0.5rem; /* rounded-lg */
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); /* shadow-inner */
-          padding: 0.5rem 0; /* py-2 */
-        }
-
-        .nav-menu-mobile .nav-link {
-          display: block;
-          padding: 0.75rem 1rem; /* px-4 py-3 */
-          font-size: 1.125rem; /* text-lg */
-          font-weight: 500; /* font-medium */
-          transition: background-color 0.3s ease;
-          border-radius: 0.375rem; /* rounded-md */
-          margin: 0.25rem 0.5rem; /* mx-2 my-1 */
-        }
-
-        .nav-menu-mobile .nav-link:hover {
-          background-color: #2563eb; /* hover:bg-blue-600 */
-        }
-
-        .nav-menu-mobile .nav-link.active {
-          background-color: #1e40af; /* bg-blue-800 */
-          color: white;
-        }
-
         /* Media query for medium screens (md: breakpoint equivalent) */
         @media (min-width: 768px) {
-          .menu-button {
-            display: none; /* hidden on md and up */
-          }
           .nav-links-desktop {
             display: flex; /* flex on md and up */
-          }
-          .nav-menu-mobile {
-            display: none; /* hidden on md and up */
           }
         }
       `}</style>
@@ -203,39 +156,8 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
         <div className="navbar-container">
           {/* Logo or Brand Name */}
           <a href="#" className="navbar-brand">
-            MySite
+            Home
           </a>
-
-          {/* Mobile menu button */}
-          <button
-            className="menu-button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
 
           {/* Desktop navigation links */}
           <div className="nav-links-desktop">
@@ -256,27 +178,6 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
             ))}
           </div>
         </div>
-
-        {/* Mobile navigation menu (conditionally rendered) */}
-        {isMenuOpen && (
-          <div className="nav-menu-mobile">
-            {links.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.id);
-                }}
-                className={`nav-link ${
-                  activeSection === link.id ? "active" : ""
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
       </nav>
     </>
   );
