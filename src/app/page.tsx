@@ -1,9 +1,15 @@
 "use client";
 import React from "react";
-import Section from "./components/section/section"; // Assuming Section.tsx is in the same directory or adjust path as needed
-
+import Section from "./components/section/section";
+import Navbar from "./components/navbar/navbar";
 // Define the type for the functional component for better type checking
 const App: React.FC = () => {
+  const navLinks = [
+    { id: "home", label: "Home" },
+    { id: "about-us", label: "About Us" },
+    { id: "our-services", label: "Services" },
+    { id: "contact-info", label: "Contact" }
+  ];
   return (
     <div>
       {/* Global styles for the body to ensure smooth scrolling and font */}
@@ -16,7 +22,7 @@ const App: React.FC = () => {
           scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
         }
       `}</style>
-
+      <Navbar links={navLinks} />
       {/* Example Section 1: Home */}
       <Section
         id="home"
