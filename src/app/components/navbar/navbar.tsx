@@ -77,58 +77,37 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
         /* Base styles for the navbar */
         .navbar {
           position: fixed;
-          top: 0;
-          left: 0;
+
           width: 100%;
           background: linear-gradient(
             to right,
             rgba(8, 8, 8, 0),
             rgb(42, 40, 45)
-          ); /* from-blue-600 to-purple-700 */
-          color: white;
+          );
+
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
-          z-index: 50;
-          padding: 1rem; /* p-4 */
+
           font-family: "Inter", sans-serif;
         }
 
         .navbar-container {
           max-width: mx-auto;
-          margin-left: auto;
+          margin-left: 39.25rem;
           margin-right: auto;
+
           display: flex;
           justify-content: space-between;
           align-items: center;
-        }
-
-        .navbar-brand {
-          font-size: 1.5rem; /* text-2xl */
-          font-weight: bold;
-          color: black;
-          border-radius: 0.375rem; /* rounded-md */
-          padding: 0.5rem 0.75rem; /* px-3 py-2 */
-          transition: background-color 0.3s ease;
-        }
-
-        .navbar-brand:hover {
-          background-color: rgb(255, 255, 255); /* hover:bg-blue-700 */
-        }
-
-        .menu-button:focus {
-          box-shadow: 0 0 0 2px white; /* focus:ring-2 focus:ring-white */
-        }
-
-        /* Desktop navigation links */
-        .nav-links-desktop {
-          display: none; /* hidden by default */
-          gap: 1.5rem; /* space-x-6 */
+          background-color: transparent; /* bg-transparent */
         }
 
         .nav-link {
-          padding: 0.5rem 6rem; /* px-4 py-2 */
-          border-radius: 0.375rem; /* rounded-md */
-          font-size: 1.126rem; /* text-lg */
-          font-weight: 500; /* font-medium */
+          font-size: 1.5rem;
+          font-weight: bold;
+
+          padding: 1rem 3rem;
+          font-size: 1.126rem;
+          font-weight: 500;
           color: white;
           transition: background-color 0.3s ease, color 0.3s ease,
             box-shadow 0.3s ease;
@@ -155,9 +134,6 @@ const Navbar: React.FC<NavbarProps> = ({ links = [] }) => {
       <nav className="navbar">
         <div className="navbar-container">
           {/* Logo or Brand Name */}
-          <a href="#" className="navbar-brand">
-            Home
-          </a>
 
           {/* Desktop navigation links */}
           <div className="nav-links-desktop">
